@@ -32,7 +32,7 @@ export interface PostDB {
 }
 
 // tipagem para criação POST de "posts" sem created_at e update_at
-export interface AccountDBPost {
+export interface PostDBPost {
     id: string,
     creator_id: string,
     content: string,
