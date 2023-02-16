@@ -55,7 +55,7 @@ export interface PostModel {
 }
 
 export interface PostWithCreatorDB extends PostDB {
-    creator_content: string
+    creator_name: string
 }
 
 //----------------------------------------------------------
