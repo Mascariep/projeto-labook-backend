@@ -1,6 +1,6 @@
 import { UserDB, UserModel, USER_ROLES } from "../types"
 
-    export class user {
+    export class User {
         constructor(
             private id: string,
             private name: string,
