@@ -89,7 +89,7 @@ export class PostDatabase extends BaseDatabase {
             .select()
             .where({
                 user_id: likeDislikeDBToFind.user_id,
-                playlist_id: likeDislikeDBToFind.post_id
+                post_id: likeDislikeDBToFind.post_id
             })
 
         if (likeDislikeDB) {
@@ -109,7 +109,7 @@ export class PostDatabase extends BaseDatabase {
             .delete()
             .where({
                 user_id: likeDislikeDB.user_id,
-                playlist_id: likeDislikeDB.post_id
+                post_id: likeDislikeDB.post_id
             })
     }
 
@@ -120,7 +120,7 @@ export class PostDatabase extends BaseDatabase {
             .update(likeDislikeDB)
             .where({
                 user_id: likeDislikeDB.user_id,
-                playlist_id: likeDislikeDB.post_id
+                post_id: likeDislikeDB.post_id
             })
     }
 }
