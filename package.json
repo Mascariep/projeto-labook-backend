@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Mascariep/projeto-labook-backend#readme",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.16",
     "@types/jsonwebtoken": "^9.0.1",

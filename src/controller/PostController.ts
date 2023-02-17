@@ -8,7 +8,7 @@ export class PostController {
         private postBusiness: PostBusiness
     ) {}
 
-    public getPosts = async (req: Request, res: Response) => {
+    public getPost = async (req: Request, res: Response) => {
         try {
             const input: GetPostsInputDTO = {
                 token: req.headers.authorization
@@ -31,7 +31,7 @@ export class PostController {
         try {
             const input: CreatePostInputDTO = {
                 token: req.headers.authorization,
-                name: req.body.name
+                content: req.body.content
             }
 
             await this.postBusiness.createPost(input)
@@ -51,7 +51,7 @@ export class PostController {
         try {
             const input: EditPostInputDTO = {
                 idToEdit: req.params.id,
-                name: req.body.name,
+                content: req.body.content,                
                 token: req.headers.authorization
             }
 
