@@ -1,5 +1,5 @@
 import { PostDatabase } from "../database/PostDatabase";
-import { CreatePostInputDTO, DeletePostInputDTO, EditPostInputDTO, GetPostsInputDTO, GetPlaylistsOutputDTO, LikeOrDislikePlaylistInputDTO, GetPostsOutputDTO, LikeOrDislikePostInputDTO } from "../dtos/userDTO";
+import { CreatePostInputDTO, DeletePostInputDTO, EditPostInputDTO, GetPostsInputDTO, GetPostsOutputDTO, LikeOrDislikePostInputDTO } from "../dtos/userDTO";
 import { BadRequestError } from "../errors/BadRequestError";
 import { NotFoundError } from "../errors/NotFoundError";
 import { Post } from "../models/Post";
@@ -59,8 +59,8 @@ export class PostBusiness {
     public createPost = async (
         input: CreatePostInputDTO
     ): Promise<void> => {
-        const { token, name } = input
-
+        const { token, content } = input
+        
         if (token === undefined) {
             throw new BadRequestError("token ausente")
         }
@@ -71,8 +71,8 @@ export class PostBusiness {
             throw new BadRequestError("token inválido")
         }
 
-        if (typeof name !== "string") {
-            throw new BadRequestError("'name' deve ser string")
+        if (typeof content !== "string") {
+            throw new BadRequestError("'Post' deve ser string")
         }
 
         const id = this.idGenerator.generate()
@@ -83,7 +83,7 @@ export class PostBusiness {
 
         const post = new Post(
             id,
-            name,
+            content,
             0,
             0,
             createdAt,
@@ -100,7 +100,7 @@ export class PostBusiness {
     public editPost = async (
         input: EditPostInputDTO
     ): Promise<void> => {
-        const { idToEdit, token, name } = input
+        const { idToEdit, token, content } = input
 
         if (token === undefined) {
             throw new BadRequestError("token ausente")
@@ -112,8 +112,8 @@ export class PostBusiness {
             throw new BadRequestError("token inválido")
         }
 
-        if (typeof name !== "string") {
-            throw new BadRequestError("'name' deve ser string")
+        if (typeof content !== "string") {
+            throw new BadRequestError("'Post' deve ser string")
         }
 
         const postDB = await this.postDatabase.findById(idToEdit)
@@ -141,7 +141,7 @@ export class PostBusiness {
             creatorName
         )
 
-        post.setContent(name)
+        post.setContent(content)
         post.setUpdatedAt(new Date().toISOString())
 
         const updatedPostDB = post.toDBModel()
@@ -252,7 +252,7 @@ export class PostBusiness {
             }
 
         } else {
-            await this.postDatabase.likeOrDislikePlaylist(likeDislikeDB)
+            await this.postDatabase.likeOrDislikePost(likeDislikeDB)
     
             like ? post.addLike() : post.addDislike()
         }
