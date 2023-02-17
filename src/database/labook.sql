@@ -94,7 +94,7 @@ WHERE id = "p003";
 
 -------------------------------------------------------------
 
-----------UPDATE DAS TABLES
+----------RELAÇÃO DAS TABLES
 SELECT
     posts.id,
     posts.creator_id,
